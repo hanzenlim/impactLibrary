@@ -37,6 +37,13 @@ module.exports = {
         "presets": ["react", "es2015", "stage-0", "react-hmre"]
       }
     }, {
+      test: /.jsx?$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/,
+      query: {
+        presets: ['es2015', 'react']
+      }
+    }, {
       test: /\.json?$/,
       loader: 'json'
     }, {
