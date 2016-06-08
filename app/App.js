@@ -38,7 +38,7 @@ const App = React.createClass({
     var bookListArray = this.state.bookList
     bookListArray.push({isbn: isbn, name: name})
 
-    this.setState({bookList, bookListArray})
+    this.setState({bookList: bookListArray})
   },
 
   render() {

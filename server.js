@@ -20,6 +20,7 @@ const proxy = httpProxy.createProxyServer({
 });
 
 const firebase = require("firebase");
+const bodyParser = require('body-parser')
 
 
 if (isDeveloping) {
@@ -29,6 +30,11 @@ if (isDeveloping) {
   });
 
   const db = firebase.database();
+
+  app.use(bodyParser.json());       // to support JSON-encoded bodies
+  app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+  })); 
 
 
   const compiler = webpack(config);
@@ -53,28 +59,21 @@ if (isDeveloping) {
   });
 
   app.all('/db/*', function (req, res) {
-    console.log(proxy);
-
     var ref = db.ref("checkoutBooks");
-    ref.push({
-      name: "Tony Parker",
-      isbn: "1"
-    });
 
-      ref.push({
-      name: "Manu Ginobili",
-      isbn: "2"
+    var newPostRef = ref.push();
+    newPostRef.set({
+      name: req.body.name,
+      isbn: req.body.isbn
+    }, function (err) {
+      res.write('success');
+      res.end();
     });
-   
-
-    res.write('proxy');
-    res.end();
   });
-
 
   app.get('/list', function response(req, res) {
     var ref = db.ref("checkoutBooks");
-    ref.on("value", function(snapshot){
+    ref.once("value", function(snapshot){
       console.log(snapshot.val());
       res.write(JSON.stringify(snapshot.val()));
       res.end();

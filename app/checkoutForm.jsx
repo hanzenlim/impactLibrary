@@ -15,7 +15,14 @@ const CheckoutForm = React.createClass({
     e.preventDefault();
     this.props.saveRow(this.state.isbn, this.state.name);
 
-    this.setState({
+   
+
+    $.post( "/db/write", {name: this.state.name, isbn: this.state.isbn }, function (data) {
+      console.log('db/write')
+      console.log(data);
+    })
+
+     this.setState({
       isbn: '',
       name: '',
       bookName: '',
