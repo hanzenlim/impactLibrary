@@ -64,7 +64,11 @@ if (isDeveloping) {
     var newPostRef = ref.push();
     newPostRef.set({
       name: req.body.name,
-      isbn: req.body.isbn
+      date: req.body.date,
+      isbn: req.body.isbn,
+      bookName: req.body.bookName,
+      author: req.body.author,
+
     }, function (err) {
       res.write('success');
       res.end();
@@ -74,7 +78,6 @@ if (isDeveloping) {
   app.get('/list', function response(req, res) {
     var ref = db.ref("checkoutBooks");
     ref.once("value", function(snapshot){
-      console.log(snapshot.val());
       res.write(JSON.stringify(snapshot.val()));
       res.end();
     }, function (errorObject) {

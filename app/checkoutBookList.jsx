@@ -6,7 +6,7 @@ import $ from "jquery";
 const BookList = React.createClass({
   render() {
     const data = this.props.data.map(book => (
-      <li key={book.name} >ISBN: {book.isbn} Name: {book.name}</li>
+      <li key={book.name} >ISBN: {book.isbn} Name: {book.name} Book Name: {book.bookName} Author: {book.author}</li>
     ))
 
     return (

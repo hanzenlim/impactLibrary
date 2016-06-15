@@ -4,6 +4,38 @@
   border: 1px solid blue;
 }
 
+.mts {
+	margin-top: 14px;
+}
+
+.mtm {
+	margin-top: 18px;
+}
+
+.mtl {
+	margin-top: 24px;
+}
+
+.mtxl {
+	margin-top: 40px;
+}
+
+.mls {
+	margin-left: 14px;
+}
+
+.mlm {
+	margin-left: 14px;
+}
+
+.mll {
+	margin-left: 24px;
+}
+
+.mlxl {
+	margin-left: 40px;
+}
+
 .bap {
   background-color: red;
   height: 25px;
