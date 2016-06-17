@@ -3,6 +3,8 @@ import { render } from 'react-dom'
 import styles from './App.css';
 import CheckoutForm from './checkoutForm.jsx';
 import CheckoutBookList from './checkoutBookList.jsx';
+import CartList from './cartList.jsx';
+
 import IsbnForm from './isbnForm.jsx';
 
 import $ from "jquery";
@@ -12,76 +14,109 @@ const App = React.createClass({
   getInitialState() {
     return {
       bookList: [],
-      isbn: '',
-      bookName: '',
-      author: ''
+      cartList: []
     }
   },
 
-  // is going to run this function when all html is loaded.
-  componentDidMount () {
+  fetchCheckoutBooks () {
     var self = this
     var url = '/list'
 
     $.getJSON(url, function(result){
-      console.log(result)
 
       var array = $.map(result, function(value, index) {
-        return [value];
+        value.key = index
+        return value;
       });
+
+      console.log(array);
 
       self.setState({bookList: array})
     });
   },
 
+  // is going to run this function when all html is loaded.
+  componentDidMount () {
+    this.fetchCheckoutBooks()
+  },
+
   handleSaveRow (name, date) {
-    var self = this
+    if (this.state.cartList.length === 0) {
+      alert("shopping cart  can't be empty");
+      return
+    }
+
     var data = {}
     data.name = name
     data.date = date
-    data.isbn = this.state.isbn
-    data.bookName = this.state.bookName
-    data.author = this.state.author
 
+    if (this.state.cartList.length > 0) {
+      for (var index in this.state.cartList) {
+        this.state.cartList[index].name = name
+        this.state.cartList[index].date = date
+      }
 
+      data.cartList = this.state.cartList
+    }
+
+    var self = this
     $.post( "/db/write", data)
       .done(function( data ) {
-        var bookListArray = self.state.bookList
-        bookListArray.push({
-          name: name, 
-          date: date, 
-          isbn: self.state.isbn,
-          bookName: self.state.bookName,
-          author: self.state.author
-        })
+        self.fetchCheckoutBooks()
 
-        self.setState({bookList: bookListArray})
+        self.setState({
+          cartList: []
+        })
     });
   },
 
-  handleBookData (isbn, bookName, author) {
-    this.setState({
+  addBookToCart (isbn, bookName, author) {
+    var cartList = this.state.cartList
+
+    cartList.push({
       isbn: isbn,
       bookName: bookName,
       author: author
     })
+
+    this.setState({
+      cartList: cartList
+    })
+  },
+
+  returnBook (key) {
+    var self = this
+
+    var data = {}
+    data.key = key
+    $.post( "/return", data)
+      .done(function( data ) {
+        self.fetchCheckoutBooks()
+    });
   },
 
   render() {
     return (
       <div className={styles.mtxl}>
         <IsbnForm 
-          saveBookData={this.handleBookData}
+          addBookData={this.addBookToCart}
           isbn={this.state.isbn}
           bookName={this.state.bookName}
+        />
+
+        <CartList
+          data = {this.state.cartList}
         />
 
         <CheckoutForm 
           saveRow={this.handleSaveRow}
         />
 
+        
+
         <CheckoutBookList
           data = {this.state.bookList}
+          removeBook = {this.returnBook}
         />
 
         <div className={styles.app}>

@@ -8,7 +8,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.js');
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
-const port = isDeveloping ? 3000 : process.env.PORT;
+const port = isDeveloping ? 8080 : process.env.PORT;
 const app = express();
 
 const httpProxy = require('http-proxy');
@@ -59,20 +59,29 @@ if (isDeveloping) {
   });
 
   app.all('/db/*', function (req, res) {
+    var cartList = req.body.cartList
+
+    var ref = db.ref("checkoutBooks");
+    
+    for (var index in cartList) {
+      var newPostRef = ref.push();
+      newPostRef.set(cartList[index], function (err) {
+        console.log('write')
+      });
+    }
+    res.write('success');
+    res.end();
+  });
+
+  app.all('/return', function (req, res) {
+    var key = req.body.key;
+
     var ref = db.ref("checkoutBooks");
 
-    var newPostRef = ref.push();
-    newPostRef.set({
-      name: req.body.name,
-      date: req.body.date,
-      isbn: req.body.isbn,
-      bookName: req.body.bookName,
-      author: req.body.author,
+    ref.child(key).remove();
 
-    }, function (err) {
-      res.write('success');
-      res.end();
-    });
+    res.write('success');
+    res.end();
   });
 
   app.get('/list', function response(req, res) {

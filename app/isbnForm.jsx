@@ -18,6 +18,23 @@ const IsbnForm = React.createClass({
     }
   },
 
+  addBook (e) {
+    e.stopPropagation()
+    e.preventDefault()
+
+    if (this.state.isbn !== '' && 
+        this.state.bookName !== '' &&
+        this.state.author !== '') {
+      this.props.addBookData(this.state.isbn, this.state.bookName, this.state.author)
+      this.setState({
+        isbn: '',
+        bookName: '',
+        author: '',
+        image: ''
+      })
+    }
+  },
+
   // this is where your google api should happen
   handleISBNForm (e) {
     e.stopPropagation()
@@ -63,8 +80,6 @@ const IsbnForm = React.createClass({
       self.setState({bookName: title})
       self.setState({author: author})
       self.setState({image: image})
-
-      self.props.saveBookData(isbn, title, author)
     });
   },
 
@@ -126,6 +141,7 @@ const IsbnForm = React.createClass({
               />
             </div>
           </div>
+          <div className="btn btn-primary" onClick={this.addBook}>Add Book</div>
         </div>
         <div className="col-sm-3">
           <img src={image} />

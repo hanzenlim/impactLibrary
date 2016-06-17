@@ -36,6 +36,11 @@
 	margin-left: 40px;
 }
 
+.pvm {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
 .bap {
   background-color: red;
   height: 25px;
