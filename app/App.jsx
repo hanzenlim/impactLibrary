@@ -47,8 +47,6 @@ const App = React.createClass({
     }
 
     var data = {}
-    data.name = name
-    data.date = date
 
     if (this.state.cartList.length > 0) {
       for (var index in this.state.cartList) {
@@ -97,7 +95,7 @@ const App = React.createClass({
 
   render() {
     return (
-      <div className={styles.mtxl}>
+      <div className={styles.ptxxl}>
         <IsbnForm 
           addBookData={this.addBookToCart}
           isbn={this.state.isbn}
@@ -118,9 +116,6 @@ const App = React.createClass({
           data = {this.state.bookList}
           removeBook = {this.returnBook}
         />
-
-        <div className={styles.app}>
-        </div> 
       </div>
     );
   }

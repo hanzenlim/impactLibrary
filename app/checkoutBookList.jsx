@@ -21,17 +21,34 @@ const BookList = React.createClass({
     var buttonStyle = "btn btn-primary " + styles.mlm
 
     const data = this.props.data.map(book => (
-      <li key={book.key} className={styles.pvm}  >ISBN: {book.isbn} Name: {book.name} Book Name: {book.bookName} Author: {book.author} 
-        <div data-key={book.key} onClick={this.remove} className={buttonStyle}>return</div>
-      </li>
+      <tr>
+        <td>{book.isbn}</td>
+        <td>{book.bookName}</td>
+        <td>{book.author}</td>
+        <td>{book.name}</td>
+        <td data-key={book.key} onClick={this.remove} className={buttonStyle}>return</td>
+      </tr>
     ))
 
     return (
       <div>
         <h3>Checkout books</h3>
-        <ul>
-          {data}
-        </ul>
+        <div className="table-responsive">
+          <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>ISBN</th>
+                  <th>Book Name</th>
+                  <th>Author</th>
+                  <th>Borrowers Name</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data}
+              </tbody>
+          </table>
+        </div>
       </div>
     )
   }

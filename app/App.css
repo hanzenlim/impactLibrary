@@ -41,6 +41,14 @@
 	padding-bottom: 10px;
 }
 
+.ptxl {
+	padding-top: 40px;
+}
+
+.ptxxl {
+	padding-top: 80px;
+}
+
 .bap {
   background-color: red;
   height: 25px;
