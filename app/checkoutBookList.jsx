@@ -4,7 +4,15 @@ import serializeForm from 'form-serialize'
 import $ from "jquery"
 import styles from './App.css'
 
-
+   var buttStyle = {
+        color: 'black',
+        backgroundColor: '#fec14b',
+        border: 'none',
+        marginLeft: '-1%',
+        height: '30px',
+        marginTop: '2%',
+        paddingTop: '5px'
+    }
 const BookList = React.createClass({
 
   remove (e) {
@@ -26,15 +34,15 @@ const BookList = React.createClass({
         <td>{book.bookName}</td>
         <td>{book.author}</td>
         <td>{book.name}</td>
-        <td data-key={book.key} onClick={this.remove} className={buttonStyle}>return</td>
+        <td style={buttStyle} data-key={book.key} onClick={this.remove} className={buttonStyle}>RETURN</td>
       </tr>
     ))
 
     return (
       <div>
-        <h3>Checkout books</h3>
+        <h3>Checked Out Books</h3>
         <div className="table-responsive">
-          <table className="table table-striped">
+          <table className="table table-striped ">
               <thead>
                 <tr>
                   <th>ISBN</th>

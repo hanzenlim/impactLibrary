@@ -71,9 +71,11 @@ const IsbnForm = React.createClass({
       if (item && 
           item.volumeInfo && 
           item.volumeInfo.imageLinks && 
-          item.volumeInfo.imageLinks.smallThumbnail) {
-        image = item.volumeInfo.imageLinks.smallThumbnail
+          item.volumeInfo.imageLinks.thumbnail) {
+        image = item.volumeInfo.imageLinks.thumbnail
       }
+
+      console.log(data);
 
 
       self.setState({isbn: isbn})
@@ -91,22 +93,54 @@ const IsbnForm = React.createClass({
       image
     } = this.state
 
+  var addBook = {
+    height: '50px',
+    width: '30%',
+    paddingTop: '15px',
+    backgroundColor: '#fec14b',
+    color: 'black',
+    border: 'none',
+    marginLeft: '-8%'
+  };
+
+  var viewBook = {
+    height: '50px',
+    width: '63%',
+    textAlign: 'center',
+    paddingTop: '15px',
+    backgroundColor: '#fec14b',
+    color: 'black',
+    border: 'none'
+  };
+
+  var marginBottom = {
+        marginBottom: '5%'
+  };
+
+  var imageMargin = {
+      marginTop: '30%',
+      marginLeft: '50%'
+    };
+
     var divStyle = {
       color: 'red',
       background: 'yellow'
     };
+
+
     var cssStyles = styles.mts
     var buttonStyles = 'btn btn-primary'
 
     console.log(styles.mtl);
 
     return (
-      <div className="row">
+      <div className="row" style={marginBottom}>
         <div className="col-sm-6">
           <h4>Book Information</h4>
+
           <div className="form-group row">
             <div className="col-sm-9">
-                        <label className="form-control-label">ISBN:</label>
+              <label className="form-control-label">ISBN:</label>
 
               <input
                 className="form-control"
@@ -145,15 +179,31 @@ const IsbnForm = React.createClass({
               />
             </div>
           </div>
-          <div className="btn btn-primary" 
-                onClick={this.addBook}
-                >Add Book</div>
-        </div>
-        <br />
-        <div className="col-sm-3">
-          <img src={image} />
-        </div>
+
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="btn btn-primary" 
+                  onClick={this.addBook}
+                  style={viewBook} 
+                  >VIEW BOOK</div>
+          </div>
+           
+            <div class="col-sm-6">
+              <div className="btn btn-primary" 
+                  onClick={this.addBook}
+                  style={addBook} 
+                  >ADD BOOK</div>
+            </div>
+          </div>
+
+          </div>
+
+          <div className="col-sm-2"> 
+            <img src={image} style={imageMargin} />
+          </div>
       </div>
+
+
     )
   }
 })

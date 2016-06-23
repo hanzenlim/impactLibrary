@@ -8,6 +8,14 @@ import styles from './App.css'
 var title;
 var author; 
 var image;
+var okButt = {
+    color: 'black',
+    backgroundColor: '#fec14b',
+    border: 'none',
+    width: '10%',
+    height: '50px',
+    fontSize: '15px'
+};
 
 const CheckoutForm = React.createClass({
   getInitialState() {
@@ -62,7 +70,7 @@ const CheckoutForm = React.createClass({
         <form onSubmit={this.handleSubmit}>
           <fieldset className="form-group">
             <p>
-              <label>Name of Student: <input
+              <label>Borrowers Name: <input
                 className="form-control"
                 type="text"
                 value={name}
@@ -82,9 +90,9 @@ const CheckoutForm = React.createClass({
               /></label>
             </p>
           </fieldset>
-          <button className="btn btn-primary">ok</button> 
+          <button className="btn btn-primary" style={okButt}>CHECKOUT</button> 
         </form>
-        
+
              </div>
              
     )
