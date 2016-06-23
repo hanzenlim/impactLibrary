@@ -60,9 +60,10 @@ const CheckoutForm = React.createClass({
       <div className={styles.mtm}>
         <h4>Personal Information</h4>
         <form onSubmit={this.handleSubmit}>
-          <fieldset>
+          <fieldset className="form-group">
             <p>
-              <label>Name: <input
+              <label>Name of Student: <input
+                className="form-control"
                 type="text"
                 value={name}
                 onChange={(e) => {
@@ -72,6 +73,7 @@ const CheckoutForm = React.createClass({
             </p>            
             <p>
               <label>Date: <input
+                className="form-control"
                 type="date"
                 value={date}
                 onChange={(e) => {
@@ -82,8 +84,9 @@ const CheckoutForm = React.createClass({
           </fieldset>
           <button className="btn btn-primary">ok</button> 
         </form>
-      
+        
              </div>
+             
     )
   }
 })

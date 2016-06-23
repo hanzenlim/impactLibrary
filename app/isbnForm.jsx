@@ -105,9 +105,11 @@ const IsbnForm = React.createClass({
         <div className="col-sm-6">
           <h4>Book Information</h4>
           <div className="form-group row">
-            <label className="col-sm-3 form-control-label">ISBN:</label>
             <div className="col-sm-9">
+                        <label className="form-control-label">ISBN:</label>
+
               <input
+                className="form-control"
                 type="text"
                 value={isbn}      
                 onChange={(e) => {
@@ -118,9 +120,10 @@ const IsbnForm = React.createClass({
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-3 form-control-label">Book Name:</label>
             <div className="col-sm-9">
+              <label className="form-control-label">Book Name:</label>
               <input
+                className="form-control"
                 type="text"
                 value={bookName}      
                 onChange={(e) => {
@@ -130,9 +133,10 @@ const IsbnForm = React.createClass({
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-3 form-control-label">Author:</label>
             <div className="col-sm-9">
+              <label className="form-control-label">Author:</label>
               <input
+                className="form-control"
                 type="text"
                 value={author}      
                 onChange={(e) => {
@@ -141,8 +145,11 @@ const IsbnForm = React.createClass({
               />
             </div>
           </div>
-          <div className="btn btn-primary" onClick={this.addBook}>Add Book</div>
+          <div className="btn btn-primary" 
+                onClick={this.addBook}
+                >Add Book</div>
         </div>
+        <br />
         <div className="col-sm-3">
           <img src={image} />
         </div>
