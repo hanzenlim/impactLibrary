@@ -95,12 +95,11 @@ const IsbnForm = React.createClass({
 
   var addBook = {
     height: '50px',
-    width: '30%',
+    width: '50%',
     paddingTop: '15px',
     backgroundColor: '#fec14b',
     color: 'black',
     border: 'none',
-    marginLeft: '-8%'
   };
 
   var viewBook = {
@@ -136,11 +135,11 @@ const IsbnForm = React.createClass({
     return (
       <div className="row" style={marginBottom}>
         <div className="col-sm-6">
-          <h4>Book Information</h4>
+          <h3>Book Information</h3>
 
           <div className="form-group row">
             <div className="col-sm-9">
-              <label className="form-control-label">ISBN:</label>
+              <label className={styles.grey + " form-control-label"}>ISBN:</label>
 
               <input
                 className="form-control"
@@ -155,7 +154,7 @@ const IsbnForm = React.createClass({
           </div>
           <div className="form-group row">
             <div className="col-sm-9">
-              <label className="form-control-label">Book Name:</label>
+              <label className={styles.grey + " form-control-label"}>Book Name:</label>
               <input
                 className="form-control"
                 type="text"
@@ -168,7 +167,7 @@ const IsbnForm = React.createClass({
           </div>
           <div className="form-group row">
             <div className="col-sm-9">
-              <label className="form-control-label">Author:</label>
+              <label className={styles.grey + " form-control-label"}>Author:</label>
               <input
                 className="form-control"
                 type="text"
@@ -182,13 +181,6 @@ const IsbnForm = React.createClass({
 
           <div className="row">
             <div className="col-sm-6">
-              <div className="btn btn-primary" 
-                  onClick={this.addBook}
-                  style={viewBook} 
-                  >VIEW BOOK</div>
-          </div>
-           
-            <div class="col-sm-6">
               <div className="btn btn-primary" 
                   onClick={this.addBook}
                   style={addBook} 

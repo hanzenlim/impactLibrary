@@ -53,6 +53,10 @@
   background-color: red;
   height: 25px;
 }
+
+.grey {
+	color: #888282;
+}
 tr {
     background-color: rgba(21, 163, 198, 0.26);
 }

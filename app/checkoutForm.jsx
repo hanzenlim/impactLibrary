@@ -65,12 +65,12 @@ const CheckoutForm = React.createClass({
     } = this.state
 
     return (
-      <div className={styles.mtm}>
-        <h4>Personal Information</h4>
+      <div className={styles.mtxl}>
+        <h3>Personal Information</h3>
         <form onSubmit={this.handleSubmit}>
           <fieldset className="form-group">
             <p>
-              <label>Borrowers Name: <input
+              <label className={styles.grey}>Borrowers Name: <input
                 className="form-control"
                 type="text"
                 value={name}
@@ -80,7 +80,7 @@ const CheckoutForm = React.createClass({
               /></label>
             </p>            
             <p>
-              <label>Date: <input
+              <label className={styles.grey}>Date: <input
                 className="form-control"
                 type="date"
                 value={date}
