@@ -92,9 +92,7 @@ const CheckoutForm = React.createClass({
           </fieldset>
           <button className="btn btn-primary" style={okButt}>CHECKOUT</button> 
         </form>
-
-             </div>
-             
+      </div>
     )
   }
 })

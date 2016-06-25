@@ -109,13 +109,6 @@ const App = React.createClass({
         <CheckoutForm 
           saveRow={this.handleSaveRow}
         />
-
-        
-
-        <CheckoutBookList
-          data = {this.state.bookList}
-          removeBook = {this.returnBook}
-        />
       </div>
     );
   }
